@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskView 1`] = `
+<div
+  className="task-view"
+/>
+`;
+
+exports[`TaskView 2`] = `
+<div
+  className="task-view"
+>
+  <p
+    className="common-desc"
+  >
+    Общее задание:
+  </p>
+  <div
+    className="src"
+  >
+    <h5>
+      Источник:
+    </h5>
+    <p>
+      источник
+    </p>
+  </div>
+  <div
+    className="srcNumb"
+  >
+    <h5>
+      Номер источника:
+    </h5>
+    <p>
+      номер в источнике
+    </p>
+  </div>
+  <div
+    className="content-with-header content-with-header"
+  >
+    <h5
+      className="content-with-header-header content-with-header-header"
+    >
+      Решение:
+    </h5>
+  </div>
+  <div
+    className="content-with-header content-with-header"
+  >
+    <h5
+      className="content-with-header-header content-with-header-header"
+    >
+      Ответ:
+    </h5>
+  </div>
+</div>
+`;

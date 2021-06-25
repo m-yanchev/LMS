@@ -1,0 +1,9 @@
+.images {
+    height: 156px;
+    padding-bottom: 20px;
+}
+
+.images label {
+    display: block;
+    margin-bottom: 10px;
+}

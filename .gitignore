@@ -1,0 +1,7 @@
+/node_modules
+/public/images/solutions
+/public/mathjax
+/dist
+/db
+/data
+*.log

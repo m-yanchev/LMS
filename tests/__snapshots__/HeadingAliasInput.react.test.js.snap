@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeadingAliasInput  Should empty alias string, when alias value is not string 1`] = `
+<div
+  className="heading-alias-input"
+>
+  <label
+    htmlFor="heading"
+  >
+    Заголовок
+  </label>
+  <input
+    autoFocus={true}
+    id="heading"
+    name="heading"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="Планиметрия"
+  />
+  <label
+    htmlFor="alias"
+  >
+    Алиас
+  </label>
+  <input
+    id="alias"
+    name="alias"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`HeadingAliasInput  Should empty alias string, when alias value is undefined 1`] = `
+<div
+  className="heading-alias-input"
+>
+  <label
+    htmlFor="heading"
+  >
+    Заголовок
+  </label>
+  <input
+    autoFocus={true}
+    id="heading"
+    name="heading"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="Планиметрия"
+  />
+  <label
+    htmlFor="alias"
+  >
+    Алиас
+  </label>
+  <input
+    id="alias"
+    name="alias"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`HeadingAliasInput  Should empty heading string, when heading value is not string 1`] = `
+<div
+  className="heading-alias-input"
+>
+  <label
+    htmlFor="heading"
+  >
+    Заголовок
+  </label>
+  <input
+    autoFocus={true}
+    id="heading"
+    name="heading"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value=""
+  />
+  <label
+    htmlFor="alias"
+  >
+    Алиас
+  </label>
+  <input
+    id="alias"
+    name="alias"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="ege_profil"
+  />
+</div>
+`;
+
+exports[`HeadingAliasInput  Should empty heading string, when heading value is undefined 1`] = `
+<div
+  className="heading-alias-input"
+>
+  <label
+    htmlFor="heading"
+  >
+    Заголовок
+  </label>
+  <input
+    autoFocus={true}
+    id="heading"
+    name="heading"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value=""
+  />
+  <label
+    htmlFor="alias"
+  >
+    Алиас
+  </label>
+  <input
+    id="alias"
+    name="alias"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="ege_profil"
+  />
+</div>
+`;
+
+exports[`HeadingAliasInput  Should render 1`] = `
+<div
+  className="heading-alias-input"
+>
+  <label
+    htmlFor="heading"
+  >
+    Заголовок
+  </label>
+  <input
+    autoFocus={true}
+    id="heading"
+    name="heading"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="ЕГЭ профильного уровня"
+  />
+  <label
+    htmlFor="alias"
+  >
+    Алиас
+  </label>
+  <input
+    id="alias"
+    name="alias"
+    onChange={[Function]}
+    onKeyUp={[MockFunction]}
+    size={50}
+    type="text"
+    value="ege_profil"
+  />
+</div>
+`;

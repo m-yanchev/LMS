@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainView 1`] = `
+<div
+  className="root root"
+  id="main-view"
+  onClick={[Function]}
+>
+  <div
+    className="topPanel root"
+    onClick={[Function]}
+  />
+  <div>
+    <p />
+  </div>
+</div>
+`;
+
+exports[`MainView 2`] = `
+<div
+  className="root root"
+  id="main-view"
+  onClick={[Function]}
+>
+  <div
+    className="topPanel root"
+    onClick={[Function]}
+  />
+  <div>
+    текст
+    <p />
+  </div>
+</div>
+`;
+
+exports[`MainView 3`] = `
+<div
+  className="root root"
+  id="main-view"
+  onClick={[Function]}
+>
+  <div
+    className="topPanel root"
+    onClick={[Function]}
+  >
+    <div
+      className="dropDownMenu root"
+      id="drop-down-menu"
+    >
+      <button
+        className="button"
+        id="main-item"
+      >
+        Меню
+      </button>
+    </div>
+  </div>
+  <div>
+    текст
+    <p />
+  </div>
+</div>
+`;
+
+exports[`MainView 4`] = `
+<div
+  className="root root"
+  id="main-view"
+  onClick={[Function]}
+>
+  <div
+    className="topPanel root"
+    onClick={[Function]}
+  >
+    <div
+      className="breadCrumbs root"
+    >
+      <h1>
+        <a
+          className="link"
+          href="/"
+          onClick={[Function]}
+        >
+          Задачник
+        </a>
+      </h1>
+      <h2>
+        <span
+          className="span"
+        >
+          Раздел:
+        </span>
+        <a
+          className="link"
+          href="/algebra/"
+          onClick={[Function]}
+        >
+          Алгебра
+        </a>
+      </h2>
+      <h3>
+        <span
+          className="span"
+        >
+          Тема:
+        </span>
+        <a
+          className="link"
+          href="/algebra/sposob-gruppirovki/"
+          onClick={[Function]}
+        >
+          Способ группировки
+        </a>
+      </h3>
+      <h4>
+        <span
+          className="span"
+        >
+          Тип задач:
+        </span>
+        <a
+          className="link"
+          href="/algebra/sposob-gruppirovki/primer-1/"
+          onClick={[Function]}
+        >
+          Пример 1
+        </a>
+      </h4>
+    </div>
+    <div
+      className="dropDownMenu root"
+      id="drop-down-menu"
+    >
+      <button
+        className="button"
+        id="main-item"
+      >
+        Меню
+      </button>
+    </div>
+  </div>
+  <div>
+    <p>
+      text2
+    </p>
+  </div>
+</div>
+`;

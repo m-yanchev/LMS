@@ -1,0 +1,21 @@
+.ok,
+.cancel {
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.ok {
+    background-color: #4f86ff;
+    font-weight: bold;
+    color: white
+}
+
+.cancel {
+    composes: minorBorder from '../../../styles.css';
+    margin-right: 20px;
+}
+
+.update, .remove, .cancel {
+    background-color: inherit;
+}

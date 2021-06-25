@@ -1,0 +1,1 @@
+pscp -r root@37.143.15.209:/root/LMS/public/images/ C:\Users\nyanc\WebstormProjects\LMS\public\images

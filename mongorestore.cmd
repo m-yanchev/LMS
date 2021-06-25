@@ -1,0 +1,1 @@
+"C:\Program Files\MongoDB\Server\4.0\bin\mongorestore" --drop --username="teacher" --password="xjkYX2t5Nm" C:\Users\nyanc\lmsdata\dumps\dump

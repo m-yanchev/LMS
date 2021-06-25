@@ -1,0 +1,121 @@
+@value v-font: 'Fira Sans Condensed';
+@value v-minor-text-color: #00000033;
+@value v-panel-background-color: white;
+@value v-content-background-color: white;
+@value v-hover-background-color: #00000011;
+@value v-major-text-color: #000000;
+@value v-minor-border-color: #d9cac0;
+@value v-major-border-color: #00000022;
+@value v-minor-border-style: solid;
+@value v-minor-border-width: 1px;
+@value v-major-border-style: solid;
+@value v-major-border-width: 1px;
+@value v-background-color: #00000005;
+@value v-hover-color: #C88853;
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    font-family: 'Old Standard TT', serif;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, p {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: v-font, sans-serif;
+}
+
+button {
+    border: 0 none;
+    font-family: v-font, sans-serif;
+    cursor: pointer;
+    font-size: 0
+}
+
+:focus {
+    outline-width: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 0;
+}
+
+.hoverBackgroundColor {
+    background-color: v-hover-background-color;
+}
+
+label {
+    font-family: v-font, sans-serif;
+    color: v-minor-text-color;
+}
+
+textarea, input {
+    font-size: 16px;
+    border-radius: 3px;
+    padding: 10px 10px;
+}
+
+.majorFont {
+    font-family: v-font, sans-serif;
+}
+
+.minorTextColor {
+    color: v-minor-text-color;
+}
+
+.majorTextColor {
+    color: v-major-text-color;
+}
+
+.majorBorder {
+    border-color: v-major-border-color;
+    border-style: v-major-border-style;
+    border-width: v-major-border-width;
+}
+
+.majorBottomBorder {
+    border-color: v-major-border-color;
+    border-style: none none v-major-border-style none;
+    border-width: v-major-border-width;
+}
+
+.minorBorder,
+input,
+textarea {
+    border-color: v-minor-border-color;
+    border-style: v-minor-border-style;
+    border-width: v-minor-border-width;
+}
+
+.stroke, line {
+    stroke: v-minor-border-color
+}
+
+.backgroundColor {
+    background-color: v-background-color;
+}
+
+.panelBackgroundColor {
+    background-color: v-panel-background-color;
+}
+
+.contentBackgroundColor {
+    background-color: v-content-background-color;
+}
+
+.shadow {
+    box-shadow: 0 2px 5px 1px #00000022;
+}

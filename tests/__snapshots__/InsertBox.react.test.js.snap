@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InsertBox  Should render component 1`] = `
+<div
+  className="styles"
+  id="insert-box"
+  onClick={[MockFunction]}
+  onContextMenu={[Function]}
+>
+  <svg
+    height="20"
+    width="20"
+  >
+    <line
+      className="stroke"
+      strokeWidth="2"
+      x1="10"
+      x2="10"
+      y1="0"
+      y2="20"
+    />
+    <line
+      className="stroke"
+      strokeWidth="2"
+      x1="0"
+      x2="20"
+      y1="10"
+      y2="10"
+    />
+  </svg>
+</div>
+`;

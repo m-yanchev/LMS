@@ -1,0 +1,1 @@
+pscp c:\Users\nyanc\WebstormProjects\LMS\dist\* root@37.143.15.209:/root/LMS/dist/

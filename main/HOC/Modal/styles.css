@@ -1,0 +1,18 @@
+.modal {
+    composes: contentBackgroundColor from '../../styles.css';
+    composes: shadow from '../../styles.css';
+    border-radius: 3px;
+    padding: 40px;
+    max-width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+.message {
+    composes: majorFont from '../../styles.css';
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.overlay {
+    background-color: #aaaaaaaa;
+}

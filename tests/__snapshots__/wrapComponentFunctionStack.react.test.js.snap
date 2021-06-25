@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`functionStack 1`] = `
+Array [
+  <div>
+    Hello
+  </div>,
+  <p>
+    2
+  </p>,
+  <p>
+    Nicholas
+  </p>,
+  <p>
+    +7 917 951 75 34
+  </p>,
+  <p>
+    func2
+  </p>,
+  <p>
+    func3
+  </p>,
+  <p>
+    yes
+  </p>,
+]
+`;

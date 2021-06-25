@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadCrumbs 1`] = `
+Array [
+  <div
+    className="bread-crumbs"
+  >
+    <h1>
+      <a
+        className="link"
+        href="/"
+      >
+        <img
+          alt="Тетрадка в клеточку"
+          src="/images/logo.png"
+        />
+      </a>
+    </h1>
+  </div>,
+  ",",
+]
+`;
+
+exports[`BreadCrumbs 2`] = `
+Array [
+  <div
+    className="bread-crumbs"
+  >
+    <h1>
+      <a
+        className="link"
+        href="/"
+      >
+        <img
+          alt="Тетрадка в клеточку"
+          src="/images/logo.png"
+        />
+      </a>
+    </h1>
+    <h2>
+      <span
+        className="span"
+      >
+        Раздел:
+      </span>
+      <a
+        className="link"
+        href="/algebra/"
+      >
+        Алгебра
+      </a>
+    </h2>
+  </div>,
+  ",",
+]
+`;
+
+exports[`BreadCrumbs 3`] = `
+<div
+  className="bread-crumbs"
+>
+  <h1>
+    <a
+      className="link"
+      href="/"
+    >
+      <img
+        alt="Тетрадка в клеточку"
+        src="/images/logo.png"
+      />
+    </a>
+  </h1>
+  <h2>
+    <span
+      className="span"
+    >
+      Раздел:
+    </span>
+    <a
+      className="link"
+      href="/algebra/"
+    >
+      Алгебра
+    </a>
+  </h2>
+  <h3>
+    <span
+      className="span"
+    >
+      Тема:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/"
+    >
+      Вынесение общего множителя за скобки
+    </a>
+  </h3>
+</div>
+`;
+
+exports[`BreadCrumbs 4`] = `
+<div
+  className="bread-crumbs"
+>
+  <h1>
+    <a
+      className="link"
+      href="/"
+    >
+      <img
+        alt="Тетрадка в клеточку"
+        src="/images/logo.png"
+      />
+    </a>
+  </h1>
+  <h2>
+    <span
+      className="span"
+    >
+      Раздел:
+    </span>
+    <a
+      className="link"
+      href="/algebra/"
+    >
+      Алгебра
+    </a>
+  </h2>
+  <h3>
+    <span
+      className="span"
+    >
+      Тема:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/"
+    >
+      Вынесение общего множителя за скобки
+    </a>
+  </h3>
+  <h4>
+    <span
+      className="span"
+    >
+      Тип задач:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/primer-1/"
+    >
+      Пример №1
+    </a>
+  </h4>
+</div>
+`;
+
+exports[`BreadCrumbs 5`] = `
+<div
+  className="bread-crumbs"
+>
+  <h1>
+    <a
+      className="link"
+      href="/"
+    >
+      <img
+        alt="Тетрадка в клеточку"
+        src="/images/logo.png"
+      />
+    </a>
+  </h1>
+  <h2>
+    <span
+      className="span"
+    >
+      Раздел:
+    </span>
+    <a
+      className="link"
+      href="/algebra/"
+    >
+      Алгебра
+    </a>
+  </h2>
+  <h3>
+    <span
+      className="span"
+    >
+      Тема:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/"
+    >
+      Вынесение общего множителя за скобки
+    </a>
+  </h3>
+  <h4>
+    <span
+      className="span"
+    >
+      Тип задач:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/primer-1/"
+    >
+      Пример №1
+    </a>
+  </h4>
+  <h4>
+    <span
+      className="span"
+    >
+      Задача:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/primer-1/1"
+    >
+      1
+    </a>
+  </h4>
+</div>
+`;
+
+exports[`BreadCrumbs 6`] = `
+<div
+  className="bread-crumbs"
+>
+  <h1>
+    <a
+      className="link"
+      href="/"
+    >
+      <img
+        alt="Тетрадка в клеточку"
+        src="/images/logo.png"
+      />
+    </a>
+  </h1>
+  <h2>
+    <span
+      className="span"
+    >
+      Раздел:
+    </span>
+    <a
+      className="link"
+      href="/algebra/"
+    >
+      Алгебра
+    </a>
+  </h2>
+  <h3>
+    <span
+      className="span"
+    >
+      Тема:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/"
+    >
+      Вынесение общего множителя за скобки
+    </a>
+  </h3>
+  <h4>
+    <span
+      className="span"
+    >
+      Видеоурок:
+    </span>
+    <a
+      className="link"
+      href="/algebra/vynesenie-obshchego-mnozhitelya-za-skobki/primer-1/"
+    >
+      Пример №1
+    </a>
+  </h4>
+</div>
+`;
