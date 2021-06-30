@@ -7,10 +7,10 @@ export const TYPE_DEFS = gql`
     type Result {
         ok: Boolean!
     }
-    extend type MakeSolutionResult {
+    extend type PutSolutionResult {
         result: Result!
     }
-    extend type PutProblemResultResult {
+    extend type GetSolutionResult {
         result: Result!
     }
 `
@@ -27,10 +27,10 @@ export class Result {
 
     static get resolvers(): IResolvers {
         return {
-            PutProblemResultResult: {
+            PutSolutionResult: {
                 result: Result.getOk
             },
-            MakeSolutionResult: {
+            GetSolutionResult: {
                 result: Result.getOk
             }
         }

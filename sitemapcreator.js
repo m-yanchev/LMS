@@ -1,3 +1,5 @@
+import {DB_ACCESS} from "./server/MongoDBDataSource/accessConsts";
+
 try {
     const fs = require('fs');
     const path = require('path');
@@ -5,7 +7,7 @@ try {
 
     const DOMEN = 'http://tetradkavkletochku.ru';
 
-    const client = new MongoClient('mongodb://teacher:xjkYX2t5Nm@localhost:27017', {useUnifiedTopology: true});
+    const client = new MongoClient(DB_ACCESS, {useUnifiedTopology: true});
     let sections = [];
     client.connect().then(() => {
         const db = client.db("LMSData");

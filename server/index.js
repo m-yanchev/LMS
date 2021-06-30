@@ -11,7 +11,7 @@ const fs = require("fs");
 const https = require("https");
 const multer = require("multer");
 const HTMLTemplateCreator = require("./HTMLTemplateCreator");
-const Access = require("./Access");
+const Access = require("./passportAccess/Access");
 const Schema = require("./Schema/Schema")
 const Payment = require("./Payment")
 
@@ -41,7 +41,7 @@ async function startServer(): Promise<void> {
     app.use(express.json(), express.urlencoded({ extended: true }))
     const storage = multer.memoryStorage();
     const upload = multer({storage: storage});
-    app.use(upload.any());
+    app.use("/api/data", upload.any());
 
     console.log('init multer');
 

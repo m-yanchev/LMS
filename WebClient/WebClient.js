@@ -8,7 +8,7 @@ import {LessonClient} from "./Lesson";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {LoggerClient} from "./Logger";
 import {TestProblemClient} from "./TestProblem";
-import {ProblemResultClient} from "./ProblemResult";
+// import {ProblemResultClient} from "./ProblemResult";
 
 const URI = "/api/v1"
 const NAME = "api"
@@ -22,7 +22,8 @@ export class WebClient {
             // update: SolutionClient.update,
             // insert: SolutionClient.insert
             make: SolutionClient.make,
-            putProblemResult: SolutionClient.putProblemResult
+            putProblemResult: SolutionClient.putProblemResult,
+            send: SolutionClient.send
         },
         profile: {
             data: Profile.get()

@@ -24,6 +24,8 @@ import ErrorHandler from "../../../rules/ErrorHandler";
 import {ErrorInformer} from "../../viewComponents/ErrorInformer";
 import {AppProvider, useDataSourceContext, useLoggerClientContext} from "../AppProvider";
 import {LoggerClient} from "../../../rules/LoggerClient";
+import Topic from "../../../rules/Topic";
+import {LoadingProgress} from "../../viewComponents/LoadingProgress";
 
 const MODULE_NAME = "CoursePage"
 
@@ -129,10 +131,12 @@ export default function CoursePage(props: CoursePageProps) {
             dialog: null
         }
         const [state, dispatch] = useReducer(reducer, initialState)
-        const [userData, isLessonsUserDataError] = useGetLessonsUserData({topicId: topic.id, userId: profile.id})
-        if (userData) topic.userData = userData
+        const [loading, isLessonsUserDataError] = useGetLessonsUserData({topic, userId: profile.id})
         const errorMessage = isLessonsUserDataError ? LESSONS_USER_DATA_ERROR_MESSAGE : null
+        const lesson = topic.lessons[state.lessonIndex]
+        const test = lesson.test
         return <>
+            {loading && <LoadingProgress/>}
             <CourseTitle/>
             <TopicTitle/>
             {state.view === "base" &&
@@ -142,8 +146,8 @@ export default function CoursePage(props: CoursePageProps) {
             <Webinar webinar={course.webinar}/>}
             </>}
             {state.view === "lesson" &&
-            <Lesson key={state.lessonIndex}
-                    lesson={topic.lessons[state.lessonIndex]}
+            <Lesson key={state.lessonIndex + test ? test.id : ""}
+                    lesson={lesson}
                     alias={course.alias}
                     setProfile={setProfile}
                     profile={profile}
@@ -293,19 +297,21 @@ export default function CoursePage(props: CoursePageProps) {
 }
 
 type UseGetLessonsUserDataProps = {
-    topicId: string,
+    topic: Topic,
     userId: string
 }
 
-function useGetLessonsUserData(props: UseGetLessonsUserDataProps): [Array<LessonProps> | null, boolean | null] {
-    const {topicId, userId} = props
-    const [lessonsUserData, setLessonsUserData] = useState< Array<LessonProps> | null >(null)
+function useGetLessonsUserData(props: UseGetLessonsUserDataProps): [boolean, boolean] {
+    const {topic, userId} = props
     const [error, setError] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
     const dataSource = useDataSourceContext()
     const loggerClient = useLoggerClientContext()
     useEffect(() => {
-        dataSource.lessonDS.getLessonsUserData({id: topicId}).then((lessons: Array<LessonProps>) => {
-            setLessonsUserData(lessons)
+        setLoading(true)
+        dataSource.lessonDS.getLessonsUserData({id: topic.id}).then((lessons: Array<LessonProps>) => {
+            topic.userData = lessons
+            setLoading(false)
         }).catch(error => {
             const errorHandler = ErrorHandler.create({
                 error,
@@ -314,6 +320,6 @@ function useGetLessonsUserData(props: UseGetLessonsUserDataProps): [Array<Lesson
             loggerClient.write({message: errorHandler.message})
             setError(true)
         })
-    }, [topicId, userId])
-    return [lessonsUserData, error]
+    }, [topic.id, userId])
+    return [loading, error]
 }

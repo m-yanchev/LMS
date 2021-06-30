@@ -11,12 +11,18 @@ export interface ISolutionDS {
     // update: UpdateSolutionProps => Promise<void>,
     // insert: InsertSolutionProps => Promise<string>,
     make: Make,
-    putProblemResult: ProblemResultMutation
+    putProblemResult: ProblemResultMutation,
+    send: Send
 }
 
 export type Make = MakeVars => Promise<SolutionProps>
+export type Send = (SendVars, Array<File>) => Promise<SolutionProps>
 export type MakeDS = MakeVars => Promise<Solution>
+export type SendDS = (SendVars, Array<File>) => Promise<Solution>
 export type MakeVars = {
+    testId: string
+}
+export type SendVars = {
     testId: string
 }
 
@@ -49,6 +55,7 @@ export class SolutionDS extends ObjectDS<{}> {
     // _insert: (InsertSolutionProps => Promise<string>) | null
     _make: Make | null
     _putProblemResult: ProblemResultMutation | null
+    _send: Send | null
 
     constructor(props: ?ISolutionDS) {
         super(props)
@@ -57,6 +64,7 @@ export class SolutionDS extends ObjectDS<{}> {
         // this._update = props ? props.update : null
         this._make = props ? props.make : null
         this._putProblemResult = props ? props.putProblemResult : null
+        this._send = props ? props.send : null
     }
 
     static create(props: ?ISolutionDS) {
@@ -71,6 +79,11 @@ export class SolutionDS extends ObjectDS<{}> {
     putProblemResult: ProblemResultDS = async props => {
         if (!this._putProblemResult) throw InstanceError.create("putProblemResult")
         return Solution.create(await this._putProblemResult(props))
+    }
+
+    send: SendDS = async (vars, files) => {
+        if (!this._send) throw InstanceError.create("send")
+        return Solution.create(await this._send(vars))
     }
 
     /*async get(testId: string): Promise<Solution> {

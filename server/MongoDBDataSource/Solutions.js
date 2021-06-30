@@ -35,7 +35,7 @@ export class Solutions extends JournalItems {
 
     make: Make = async document => {
         const {testId, userId} = document
-        await this.insert({item: {testId, userId}})
+        return await this.insert({item: {testId, userId}})
     }
 
     verify: Verify = async filter => {

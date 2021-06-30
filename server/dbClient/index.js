@@ -1,10 +1,12 @@
+import {DB_ACCESS} from "../MongoDBDataSource/accessConsts";
+
 const {MongoClient} = require('mongodb');
 const executeDBRequest = require("./executeDBRequest");
 
 async function dbClient(props) {
     try {
         const client = new MongoClient(
-            'mongodb://teacher:xjkYX2t5Nm@localhost:27017',
+            DB_ACCESS,
             {useUnifiedTopology: true});
         await client.connect();
         const db = client.db('LMSData');

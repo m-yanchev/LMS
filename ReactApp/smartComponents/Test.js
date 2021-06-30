@@ -112,10 +112,10 @@ export function TestDialog(props: RunningDialogProps): Element<typeof FormDialog
         }
     }
     test.onFinishCurProblem = () => {
-        putProblemResult(test.curResult.answer)
+        if (!test.isPaid) putProblemResult(test.curResult.answer)
     }
     test.onFinish = () => {
-        if (test.isUnresolvedProblems) onCloseCall("none")
+        if (test.isPaid || test.isUnresolvedProblems) onCloseCall("none")
         else onCloseCall("test-results")
     }
 
@@ -154,10 +154,10 @@ export function TestDialog(props: RunningDialogProps): Element<typeof FormDialog
                 test.goNextProblem()
                 break
             case "send":
-                // handleSend()
+                handleSend()
                 break
             case "permit":
-                // handlePermit()
+                handlePermit()
                 break
             case "finish":
                 handleClose()
@@ -165,18 +165,14 @@ export function TestDialog(props: RunningDialogProps): Element<typeof FormDialog
         }
     }
 
-    /*function handlePermit() {
-        //if (!solution) throw InstanceError.create("solution")
-        test.finish()
-        onCloseCall("checks-payment-script", test)
+    function handlePermit() {
+        onCloseCall("checks-payment-script")
     }
 
     function handleSend() {
-        //if (!solution) throw InstanceError.create("solution")
-        solution.finish()
-        onCloseCall("submit-solutions-dialog", solution)
+        onCloseCall("submit-solutions-dialog")
     }
-    */
+
     function handleEnterUp(): void {
         if (!test.goNextProblem()) handleClose()
         else setProblemNumber(problemNumber => problemNumber + 1)

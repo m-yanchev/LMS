@@ -14,6 +14,7 @@
 !.*/node_modules/graphql-tools/.*
 !.*/node_modules/graphql/.*
 !.*/node_modules/winston/.*
+!.*/node_modules/graphql-upload/.*
 [untyped]
 .*/node_modules/graphql/.*
 [include]

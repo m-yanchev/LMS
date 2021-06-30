@@ -8,17 +8,20 @@ import {
 import {ButtonWithTooltip, IconButtonWithTooltip} from "../../common/components/ButtonWithTooltip";
 import {Profile} from "../../rules/Profile";
 import {CancelButton, FormDialog, InformDialog} from "../../common/components/Dialog";
-import {Solution} from "../../rules/Solution";
 import ClearIcon from "@material-ui/icons/Clear";
 import {openFiles} from "../../common/files";
 import NumberField from "../../common/components/NumberField";
-import Payment from "../../common/logic/Payment";
+import Payment from "../../rules/Payment";
 import {makeStyles} from "@material-ui/core/styles";
 import {Test} from "../../rules/Test";
 import type {FailProps} from "../../common/FailLogLoader";
 import {PaymentScript} from "./Payment";
 import type {PaymentFormProps, ServicePaymentScriptProps} from "./Payment";
-import {InstanceError} from "../../rules/ErrorHandler/InstanceError";
+import {ErrorInformer} from "../viewComponents/ErrorInformer";
+import {useDataSourceContext, useLoggerClientContext} from "./AppProvider";
+import type {IAppError, Variable} from "../../rules/ErrorHandler";
+import {LoggerClient} from "../../rules/LoggerClient";
+import ErrorHandler from "../../rules/ErrorHandler";
 
 const useStyles = makeStyles(theme => ({
     checkCountField: {
@@ -26,6 +29,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+const MODULE_NAME = "SubmitSolutions"
+const SENDING_SOLUTION_ERROR = 'Возникла ошибка при попытке отправить решения. Попробуйте повторить позже.'
 
 export type SubmitSolutionsButtonProps = {
     variant?: "outlined" | "text" | "contained",
@@ -61,18 +66,19 @@ export function SubmitSolutionsButton(props: SubmitSolutionsButtonProps): Elemen
 
 export type SubmitSolutionsDialogProps = {
     open: boolean,
-    solution: Solution | null,
+    test: Test,
     onClose: void => void,
-    onSuccess: void => void,
-    onFail: FailProps => void
+    onSuccess: void => void
 }
 
 export function SubmitSolutionsDialog(props: SubmitSolutionsDialogProps): Element<typeof FormDialog> {
 
-    const {open, solution, onClose, onFail, onSuccess} = props
+    const {open, test, onClose, onSuccess} = props
     const [files, setFiles] = useState<Array<File>>([])
+    const [sendSolution, isSendingSolutionError] = useSendSolution(test)
+    const errorMessage = isSendingSolutionError ? SENDING_SOLUTION_ERROR : null
 
-    return (
+    return <>
         <FormDialog open={open}
                     name={"submit-solutions"}
                     onClose={onClose}
@@ -89,7 +95,7 @@ export function SubmitSolutionsDialog(props: SubmitSolutionsDialogProps): Elemen
                         </Button>
                     </>}>
             <Card>
-                <CardHeader title={solution ? solution.test.heading : ""}
+                <CardHeader title={test.heading}
                             titleTypographyProps={{variant: "subtitle2"}}
                             subheader={'Файлы с решениями к самостоятельной работе'}
                             subheaderTypographyProps={{variant: "subtitle2"}}/>
@@ -97,26 +103,17 @@ export function SubmitSolutionsDialog(props: SubmitSolutionsDialogProps): Elemen
                 <AddingForm files={files} onChange={handleChange}/>
             </Card>
         </FormDialog>
-    )
+        <ErrorInformer message={errorMessage}/>
+    </>
 
     function handleChange(files: Array<File>): void {
         setFiles(files)
     }
 
     async function handleClick(): Promise<void> {
-        try {
-            onClose()
-            await sendSolution()
-            onSuccess()
-        } catch (e) {
-            console.error(e)
-            onFail({e, method: "Dialog.sendSolution"})
-        }
-    }
-
-    async function sendSolution() {
-        if (!solution) throw InstanceError.create("solution")
-        await solution.send(files)
+        onClose()
+        await sendSolution(files)
+        onSuccess()
     }
 }
 
@@ -290,4 +287,43 @@ export function SubmitSolutionsSuccessMessage(props: SubmitSolutionsSuccessMessa
             "на свою электронную почту."}
         </InformDialog>
     )
+}
+
+function useSendSolution(test: Test): [Array<File> => Promise<void>, boolean] {
+
+    const [isError, setIsError] = useState(false)
+    const dataSource = useDataSourceContext()
+    const loggerClient = useLoggerClientContext()
+
+    const sendSendSolutionError = error => {
+        sendError({
+            error, method: "sendSolution", vars: [
+                {name: "solutionId", value: test.solution.id}
+            ], loggerClient
+        })
+        setIsError(true)
+    }
+
+    const send = async files => {
+        try {
+            test.solution = await dataSource.solutionDS.send({testId: test.id, files})
+        } catch (error) {
+            sendSendSolutionError(error)
+            throw error
+        }
+    }
+
+    return [send, isError]
+}
+
+type SendErrorProps = {
+    error: IAppError,
+    method: string,
+    vars: Array<Variable>,
+    loggerClient: LoggerClient
+}
+
+function sendError(props: SendErrorProps): void {
+    const {error, method, vars, loggerClient} = props
+    ErrorHandler.send({error, module: MODULE_NAME, method, vars, loggerClient})
 }

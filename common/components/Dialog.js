@@ -15,7 +15,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import EmailInput from "./EmailInput";
 import Loader from "../../WebClient/Loader";
-import Payment from "../logic/Payment";
+import Payment from "../../rules/Payment";
 
 const useStyles = makeStyles((theme) => ({
     formDialogAdditionalActions: {

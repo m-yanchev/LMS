@@ -9,7 +9,7 @@ import type {SolutionProps} from "../rules/Solution";
 import type {SolutionResponse} from "../server/ApolloServer/Solutions";
 import {ProblemResultClient} from "./ProblemResult";
 import {gql} from "@apollo/client/core";
-import type {Make, ProblemResultMutation} from "../rules/DataSource/Solution";
+import type {Make, ProblemResultMutation, Send} from "../rules/DataSource/Solution";
 import {WebClient} from "./WebClient";
 
 const MAKE_MUTATION = gql`
@@ -45,6 +45,20 @@ const PROBLEM_RESULT_MUTATION = gql`
     }
 `
 
+const SEND_MUTATION = gql`
+    mutation SendSolution($testId: ID!, $files: [Upload!]!) {
+        sendSolution(testId: $testId, files: $files) {
+            solution(testId: $testId) {
+                id
+                sentTimeStamp
+            }
+            result {
+                ok
+            }
+        }
+    }
+`
+
 export class SolutionClient {
 
     static make: Make = async vars => {
@@ -57,6 +71,19 @@ export class SolutionClient {
         const client = WebClient.create()
         const {data} = await client.mutate({mutation: PROBLEM_RESULT_MUTATION, variables: vars})
         return SolutionClient.oneResponseToProps(data.putProblemResult.solution)
+    }
+
+    static send: Send = async (vars, files) => {
+        const client = WebClient.create()
+        const {data} = await client.mutate({mutation: SEND_MUTATION, variables: vars})
+        const {solution, fileStorageAccessData} = data.sendSolution
+        await FileStorageClient.put({
+            storageName: "solutions",
+            key: solution.id,
+            accessData: fileStorageAccessData,
+            files
+        })
+        return SolutionClient.oneResponseToProps(solution)
     }
 
     /*static async get(vars: GetSolutionProps): Promise<SolutionProps> {

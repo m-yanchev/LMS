@@ -10,7 +10,7 @@ import {LessonGrid} from "../../../main/components/common/Boxes";
 import {
     CARD_SPACE, CARD_WIDTH, IMAGE_PREFIX, IMAGE_SUFFIX, IMAGES_FOLDER, VIDEO_POSTERS_FOLDER
 } from "../../../common/constants";
-import {ChecksPaymentScript, /*SubmitSolutionsDialog,*/ SubmitSolutionsSuccessMessage} from "../SubmitSolutions";
+import {ChecksPaymentScript, SubmitSolutionsDialog, SubmitSolutionsSuccessMessage} from "../SubmitSolutions";
 import {Course} from "../../../rules/Course";
 import {TestCardContent, TestDialog} from "../Test";
 import {FormDialog} from "../../../common/components/Dialog";
@@ -115,15 +115,14 @@ export default function Lesson(props: LessonProps) {
         {lesson.results.length > 0 && <>
             <TestResults results={lesson.results}/>
         </>}
-        {state.test &&
-        <TestDialog key={state.test.id} open={state.dialog === "test"} test={state.test}
-                    onCloseCall={handleCloseTestDialog} onFail={handleFail}/>
-        }
-        {/*<SubmitSolutionsDialog open={state.dialog === "submit-solutions-dialog"}
-                               solution={state.solution}
-                               onClose={closeDialog}
-                               onSuccess={openSubmitSolutionsSuccessInfo}
-                               onFail={handleFail}/>*/}
+        {state.test && <>
+            <TestDialog key={state.test.id} open={state.dialog === "test"} test={state.test}
+                        onCloseCall={handleCloseTestDialog} onFail={handleFail}/>
+            <SubmitSolutionsDialog open={state.dialog === "submit-solutions-dialog"}
+                                   test={state.test}
+                                   onClose={closeDialog}
+                                   onSuccess={openSubmitSolutionsSuccessInfo}/>
+        </>}
         <ChecksPaymentScript open={state.dialog === "checks-payment-script"}
                              profile={profile}
                              setProfile={setProfile}
@@ -224,7 +223,6 @@ export default function Lesson(props: LessonProps) {
     function handleCloseTestDialog(callingDialogName) {
         switch (callingDialogName) {
             case "none":
-                //onUpdateCurTest(solution.test)
                 closeDialog()
                 break
             case "submit-solutions-dialog":
@@ -259,9 +257,9 @@ export default function Lesson(props: LessonProps) {
         openDialog("checks-payment-script")
     }
 
-    /*function openSubmitSolutionsSuccessInfo() {
+    function openSubmitSolutionsSuccessInfo() {
         openDialog("submit-solutions-success")
-    }*/
+    }
 
     function openStartView() {
         openView("base")
@@ -285,15 +283,23 @@ export default function Lesson(props: LessonProps) {
     }
 }
 
-type TestResultsDialogProps = {
+type TestResultsDialogProps =
+{
     test: Test,
-    onClick: ResultsButtonGroupClickEvent => void,
-    onClose: void => void
+        onClick
+:
+    ResultsButtonGroupClickEvent => void,
+        onClose
+:
+    void
+=>
+    void
 }
 
 type ResultsButtonGroupClickEvent = "go-new-lesson" | "close"
 
-function TestResultsDialog(props: TestResultsDialogProps) {
+function TestResultsDialog(props: TestResultsDialogProps)
+{
 
     const {test, onClick, onClose} = props
     const heading = test.heading
@@ -307,12 +313,16 @@ function TestResultsDialog(props: TestResultsDialogProps) {
     )
 }
 
-type ResultsDialogButtonGroupProps = {
+type ResultsDialogButtonGroupProps =
+{
     onClick: ResultsButtonGroupClickEvent => void,
-    test: Test
+        test
+:
+    Test
 }
 
-function ResultsDialogButtonGroup(props: ResultsDialogButtonGroupProps) {
+function ResultsDialogButtonGroup(props: ResultsDialogButtonGroupProps)
+{
 
     const {onClick, test} = props
     const titles = ["Следующий урок", "Закрыть"]

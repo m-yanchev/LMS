@@ -12,9 +12,9 @@ import {
     DialogContentText,
     DialogTitle
 } from "@material-ui/core";
-import Payment from "../../common/logic/Payment";
+import Payment from "../../rules/Payment";
 import {CancelButton} from "../../common/components/Dialog";
-import type {PaymentFields} from "../../common/logic/Payment";
+import type {PaymentFields} from "../../rules/Payment";
 
 export type ServicePaymentScriptProps = {|
     open: boolean,

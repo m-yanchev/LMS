@@ -20,10 +20,12 @@ import type {IProblemsTypeDataAPI} from "./ProblemsTypes";
 import {ProblemsTypes} from "./ProblemsTypes";
 import type {IProblemsDataAPI} from "./Problems";
 import {Problems} from "./Problems";
+import {graphqlUploadExpress} from 'graphql-upload';
+import {Files} from "./Files";
 
 const PATH = "/api/v1"
 const SCHEMAS = [
-    Result, Logs, Lessons, Tests, TestProblems, Problems, ProblemsTypes, ProblemResults, Solutions, TimeStamp
+    Result, Logs, Lessons, Tests, TestProblems, Problems, ProblemsTypes, ProblemResults, Solutions, TimeStamp, Files
 ]
 
 type Options = {
@@ -71,7 +73,8 @@ export class ApolloServer {
                 db: dataAPI,
                 logger: loggerAPI
             }),
-            context: ({req}) => ({user: req.body.user})
+            context: ({req}) => ({user: req.body.user}),
+            uploads: false
         });
     }
 
@@ -80,10 +83,13 @@ export class ApolloServer {
     }
 
     applyMiddleware(app: Application): void {
-        app.use((req, res, next) => {
-            req.body.user = req.user
-            next()
-        })
+        app.use(PATH,
+            graphqlUploadExpress({maxFileSize: 10000000, maxFiles: 10}),
+            (req, res, next) => {
+                console.log(req.body)
+                req.body.user = req.user
+                next()
+            })
         this._server.applyMiddleware({app, path: PATH})
     }
 

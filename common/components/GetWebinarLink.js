@@ -9,7 +9,7 @@ import {InformDialog} from "./Dialog";
 import {Button, DialogActions, DialogContentText, Link} from "@material-ui/core";
 import {PaymentScript} from "../../ReactApp/smartComponents/Payment";
 import type {PaymentFormProps, ServicePaymentScriptProps} from "../../ReactApp/smartComponents/Payment";
-import Payment from "../logic/Payment";
+import Payment from "../../rules/Payment";
 
 type GetWebinarLinkButtonProps = {
     webinar: Webinar,

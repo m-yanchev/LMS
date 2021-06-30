@@ -8,7 +8,7 @@ import {Problems} from "./Problems";
 import {Items, JournalItems, NumbItems} from "./Items";
 import {VideoLessons} from "./VideoLessons";
 import {ProblemsTypes} from "./ProblemsTypes";
-import {DB_ACCESS} from "./accessConst";
+import {DB_ACCESS} from "./accessConsts";
 
 const {MongoClient} = require('mongodb');
 

@@ -5,21 +5,23 @@ import {IResolvers} from "graphql-tools";
 import type {Resolver} from "./index";
 import type {TestResponse} from "./Tests";
 import type {ProblemResultResponse} from "./ProblemResults";
-import type {MakeVars, PutProblemResultVars} from "../../rules/DataSource/Solution";
+import type {MakeVars, PutProblemResultVars, SendVars} from "../../rules/DataSource/Solution";
 import {ProblemResults} from "./ProblemResults";
+import {saveSolutions} from "../Uploader";
 
 export const TYPE_DEFS = gql`
     extend type Mutation {
-        makeSolution(testId: ID!) :MakeSolutionResult
-        putProblemResult(id: ID!, testProblemId: ID!, answer: String) :PutProblemResultResult!
+        makeSolution(testId: ID!) :GetSolutionResult
+        putProblemResult(id: ID!, testProblemId: ID!, answer: String) :PutSolutionResult!
+        sendSolution(testId: ID!, files: [Upload!]!): GetSolutionResult!
     }
     extend type Test {
         solution: Solution
     }
-    type MakeSolutionResult {
+    type GetSolutionResult {
         solution(testId: ID!): Solution!
     }
-    type PutProblemResultResult {
+    type PutSolutionResult {
         solution(id: ID!): Solution!
     }
     type Solution {
@@ -36,7 +38,7 @@ export interface ISolutionsDataAPI {
     verify: Verify
 }
 
-export type Make = MakeRecord => Promise<void>
+export type Make = MakeRecord => Promise<{id: string}>
 type MakeRecord = {
     testId: string,
     userId: string
@@ -61,6 +63,7 @@ type OneData = {
 
 export type MakeMutationResolver = Resolver<any, MakeVars, {}>
 export type PutProblemResultMutationResolver = Resolver<any, PutProblemResultVars, {}>
+export type SendSolutionMutationResolver = Resolver<any, SendVars, {}>
 
 export type SolutionResolver = Resolver<TestResponse, OneVars, SolutionResponse | null>
 type OneVars = {
@@ -92,6 +95,16 @@ export class Solutions {
         if (!answer) await ProblemResults.make(parent,{solutionId: id, testProblemId}, context)
         else await ProblemResults.put(parent, {solutionId: id, testProblemId, answer}, context)
         await db.solutions.verify({id})
+        return {}
+    }
+
+    static send: SendSolutionMutationResolver = async (parent, vars, context) => {
+        const {testId, files} = vars
+        const {dataSources, user} = context
+        const {db} = dataSources
+        const {id} = await db.solutions.make({userId: user.id, testId})
+        console.log(files, id)
+        await saveSolutions({files, key: id})
         return {}
     }
 
@@ -128,15 +141,16 @@ export class Solutions {
         return {
             Mutation: {
                 makeSolution: Solutions.make,
-                putProblemResult: Solutions.putProblemResult
+                putProblemResult: Solutions.putProblemResult,
+                sendSolution: Solutions.send
             },
             Test: {
                 solution: Solutions.getSolution
             },
-            MakeSolutionResult: {
+            PutSolutionResult: {
                 solution: Solutions.getSolution
             },
-            PutProblemResultResult: {
+            GetSolutionResult: {
                 solution: Solutions.getSolution
             }
         }

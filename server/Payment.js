@@ -1,5 +1,5 @@
 import {sendErrorSitePage, sendToTeacher} from "./ErrorHandler";
-import Payment from "../common/logic/Payment";
+import Payment from "../rules/Payment";
 import {makeResponse} from "./Schema/Schema";
 import HTTPRequest from "./HTTPRequest";
 import PostTransport from "./PostTransport";
