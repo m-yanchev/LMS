@@ -1,7 +1,7 @@
 module.exports = {
     target: "node",
     entry: {
-        server: './server/index.js'
+        server: './src/server/index.js'
     },
     externals: {
         "passport-vkontakte": "commonjs passport-vkontakte"

@@ -1,0 +1,14 @@
+.textarea textarea,
+.text-input input {
+    width: 1752px;
+    box-sizing: border-box;
+}
+
+.modal {
+    max-height: 950px;
+    overflow: auto;
+}
+
+.ok {
+    width: 150px;
+}

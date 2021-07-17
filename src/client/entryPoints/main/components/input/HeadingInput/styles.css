@@ -1,0 +1,14 @@
+.heading-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between
+}
+
+.ok {
+    width: 150px;
+}

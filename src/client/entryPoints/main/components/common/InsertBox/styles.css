@@ -1,0 +1,10 @@
+.insert-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.stroke {
+    composes: stroke from '../../../styles.css';
+}

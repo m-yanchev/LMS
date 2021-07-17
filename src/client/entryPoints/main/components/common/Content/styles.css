@@ -1,0 +1,43 @@
+.content {
+    align-items: center;
+    composes: majorTextColor from '../../../styles.css';
+}
+
+.content p {
+    margin: 8px 0;
+}
+
+.image-box {
+    margin: 8px 0 8px 8px;
+}
+
+.content p {
+    text-align: justify;
+}
+
+.content table {
+    border-collapse: collapse;
+    margin: 20px 0
+}
+
+.td {
+    composes: minorBorder from '../../../styles.css';
+}
+
+.td>div {
+    margin: 10px;
+}
+
+.td>div p {
+    text-indent: 0;
+}
+
+.image-box {
+    float: right;
+}
+
+@media only screen and (max-width: 414px) {
+    .content p {
+        text-indent: 5px;
+    }
+}

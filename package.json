@@ -16,6 +16,8 @@
     "build-landing-prod": "webpack --config webpack/landing.prod.js",
     "build-course-dev": "webpack --config webpack/course.dev.js",
     "build-course-prod": "webpack --config webpack/course.prod.js",
+    "build-teacher-dev": "webpack --config webpack/teacher.dev.js",
+    "build-teacher-prod": "webpack --config webpack/teacher.prod.js",
     "start-server": "nodemon dist/server.bundle",
     "flow": "flow status"
   },

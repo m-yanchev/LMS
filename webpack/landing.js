@@ -1,8 +1,8 @@
 module.exports = {
     entry: {
-        landing: './landing/index.js'
+        landing: './src/client/entryPoints/landing/index.js'
     },
     watchOptions: {
-        ignored: ['courseSolutionAdmin/**', 'server/**', "main/**", "course/**"]
+        ignored: ['courseSolutionAdmin/**', 'server/**', "main/**", "course/**", "teacher/**"]
     }
 };

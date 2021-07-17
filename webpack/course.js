@@ -1,8 +1,8 @@
 module.exports = {
     entry: {
-        course: './entryPoints/course.js'
+        course: './src/client/entryPoints/course.js'
     },
     watchOptions: {
-        ignored: ['courseSolutionAdmin/**', 'server/**', "main/**", "landing/**"]
+        ignored: ['courseSolutionAdmin/**', 'server/**', "main/**", "landing/**", "teacher/**"]
     }
 };

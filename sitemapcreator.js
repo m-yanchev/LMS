@@ -1,4 +1,4 @@
-import {DB_ACCESS} from "./server/MongoDBDataSource/accessConsts";
+import {DB_ACCESS} from "./src/server/MongoDBDataSource/accessConsts";
 
 try {
     const fs = require('fs');
